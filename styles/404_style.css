@@ -1,0 +1,33 @@
+@import "style.css";
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 50px;
+}
+
+.go-back {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 18px 36px;
+  background-color: var(--button-background-color);
+  color: var(--button-color);
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.go-back a {
+  color: white;
+  text-decoration: none;
+}
+
+.go-back:hover {
+  background-color: var(--button-hover-background-color);
+}
+
+.go-back a:hover {
+  background-color: var(--button-hover-background-color) !important;
+}

@@ -1,0 +1,103 @@
+#main-content {
+    position: relative;
+    z-index: 2;
+    background-image: var(--background-image) !important;
+    background-repeat: no-repeat;
+    background-color: var(--background-color);
+    background-attachment: fixed;
+    background-size: cover;
+}
+/*Setting up search box*/
+form {
+    right: 0;
+    position: absolute;
+    top: 1.8em;
+    transform: translateY(-50%);
+    transition: width 1s;
+    z-index: 5;
+    width: 50px;
+    height: 50px;
+    background: var(--search-color);
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid var(--search-color);
+}
+
+input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 42px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+    background-color: var(--search-color);
+    color: var(--text);
+}
+
+input::placeholder {
+    color: var(--text)
+}
+
+label {
+    transition: all 1s;
+}
+
+/*This is the search icon itself (icon is pulled from an online css stylesheet)*/
+.fa {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: var(--text);
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+/*Expand to show text input box on hover*/
+form:hover {
+    width: 300px;
+    cursor: pointer;
+}
+
+form:hover input {
+    display: block;
+}
+
+form:hover .fa {
+    background: var(--text);
+    color: var(--search-color);
+}
+
+img {
+    width: 20em;
+}
+
+/*Make images smaller when screen becomes thinner*/
+@media (max-width: 850px) {
+    img {
+        width: 100%;
+    }
+}
+    
+table {
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    align-items: center;
+}
+
+table td {
+    padding: 2em;
+}

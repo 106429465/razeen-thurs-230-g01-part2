@@ -1,0 +1,45 @@
+@import 'style.css';
+
+section h3,
+section h4 {
+  margin-bottom: 0;
+}
+
+section p,
+section ul {
+  margin-top: 5px;
+
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  width: 25%;
+  padding: 1rem;
+}
+
+.job-listing {
+  padding: 2rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin: 10px;
+}
+
+.image {
+  width: 200px;
+  height: auto;
+  display: block;
+  background-color: #f9f9f9;
+  border-radius: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+hr,
+footer {
+  clear: both;
+}

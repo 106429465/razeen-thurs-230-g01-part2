@@ -1,0 +1,71 @@
+@import "style.css";
+
+form {
+  flex-direction: column;
+  padding: 2rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+fieldset {
+  border-color: var(--accent-color);
+  padding: 0;
+}
+
+
+label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.gender {
+  font-weight: normal;
+}
+
+input[type="submit"] {
+  background-color: var(--button-background-color);
+  color: var(--button-color);
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--button-hover-background-color);
+}
+
+input,
+select {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: var(--button-background-color);
+}
+
+textarea {
+  background-color: var(--button-background-color);
+}
+
+textarea::placeholder {
+  color: var(--text)
+}
+
+input, textarea {
+  color: var(--text)
+}
+
+:root:has(#dark:target) input[type="date"],
+:root:has(#dark:target) select,
+:root:has(#main-dark:target) input[type="date"],
+:root:has(#main-dark:target) select {
+  color-scheme: dark;
+}

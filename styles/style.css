@@ -1,0 +1,656 @@
+/* gemini was used to help with debugging the dark mode and light mode switching and helped partially generate some of that css*/
+/* ChatGPT was also used to help with a small portion of the css */
+@font-face {
+  font-family: imperitum;
+  src: url('../fonts/Imperitum-Regular.ttf');
+}
+
+* {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* The following 3 :root section actually let the css themes work*/
+:root,
+:root:has(#main-light:target),
+:root:has(#light:target) {
+  --bg: white;
+  --text: black;
+  --toggle-bg: #ebebeb;
+  --gradient-bg1: #ffcc89;
+  --gradient-bg2: #d8860b;
+  --label-left: 2px;
+  --primary-color: lime;
+  --secondary-color: lightgray;
+  --accent-color: lightgreen;
+  --text-color: black;
+  --link-color: #1E5128;
+  --background-color: #f8f8f8;
+  --button-color: #000000;
+  --button-background-color: #ffffff;
+  --button-hover-background-color: #cccccc;
+  --search-color: #d5efd5;
+  --table-color: black;
+  --background-image: url("../images/img_background_light.svg");
+}
+
+
+:root:not(:has(#light:target)):not(:has(#main-light:target)):has(#main-dark:target),
+:root:not(:has(#light:target)):not(:has(#main-light:target)):has(#dark:target) {
+  --bg: black;
+  --text: white;
+  --toggle-bg: #242424;
+  --gradient-bg1: #777;
+  --gradient-bg2: #3a3a3a;
+  --label-left: 62px;
+  --transformation: translateX(-100%);
+  --primary-color: #00b300;
+  --secondary-color: #a6a6a6;
+  --accent-color: #398AE6;
+  --button-color: #ffffff;
+  --button-background-color: #4d4d4d;
+  --button-hover-background-color: #696969;
+  --text-color: #ffffff;
+  --link-color: #0ac2e3;
+  --background-color: #333333;
+  --search-color: #31688a;
+  --table-color: white;
+  --background-image: url("../images/img_background_dark.svg");
+}
+
+:root:has(#main-dark:target) .link-dark.skip-link,
+:root:has(#dark:target) .link-dark.skip-link,
+:root:has(#main-light:target) .link-light.skip-link,
+:root:has(#light:target) .link-light.skip-link {
+  display: inline-block;
+}
+
+:root:not(:has(#dark:target)):not(:has(#main-dark:target)) .link-light.persistence-link {
+  display: none !important;
+}
+
+:root:has(#dark:target) .link-dark.persistence-link,
+:root:has(#main-dark:target) .link-dark.persistence-link {
+  display: none !important;
+}
+
+:root:not(:has(#dark:target)):not(:has(#main-dark:target)) .link-dark:not(.skip-link):not(.persistence-link),
+:root:has(#light:target) .link-dark:not(.skip-link):not(.persistence-link),
+:root:has(#main-light:target) .link-dark:not(.skip-link):not(.persistence-link),
+:root:has(#dark:target) .link-light:not(.skip-link):not(.persistence-link),
+:root:has(#main-dark:target) .link-light:not(.skip-link):not(.persistence-link) {
+  display: none !important;
+}
+
+
+
+:root:has(#dark:target) .link-light.skip-link,
+:root:has(#main-dark:target) .link-light.skip-link,
+:root:has(#light:target) .link-dark.skip-link,
+:root:has(#main-light:target) .link-dark.skip-link {
+  visibility: collapse !important;
+}
+
+
+:root:has(#dark:target) .skip-link,
+:root:has(#main-dark:target) .skip-link {
+  background: var(--background-color);
+  color: var(--link-color);
+  border: 1px solid #ffffff;
+}
+
+
+:root:has(#main-dark:target) #nav-light,
+:root:has(#dark:target) #nav-light {
+  display: none;
+}
+
+:root:has(#main-dark:target) #nav-dark,
+:root:has(#dark:target) #nav-dark {
+  display: block;
+}
+
+*:not(.nav-style *) {
+  box-sizing: border-box;
+}
+
+/* Prevent the theme logic from ever touching regular page links */
+a:not(.persistence-link):not(.skip-link):not(.link-dark) {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.persistence-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 40px;
+  z-index: 10;
+  /* High z-index so they get the click */
+  text-decoration: none;
+}
+
+
+/* 3. Stop the links from showing up as blue/underlined text */
+.persistence-link::after {
+  content: none !important;
+}
+
+
+.darkmode-link a {
+  text-decoration: none;
+  color: transparent;
+  user-select: auto;
+  /* Allow the browser to 'see' the link */
+  display: block;
+  width: 100px;
+  height: 40px;
+}
+
+
+.toggle-bg {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  border-radius: 40px;
+  background-color: var(--toggle-bg);
+  /* This changes with the theme */
+  transition: 0.3s;
+  z-index: 1;
+  /* Sits behind the click layer */
+}
+
+.toggle-bg::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: var(--label-left);
+  /* Moves with the theme */
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--gradient-bg1), var(--gradient-bg2));
+  transition: all 0.3s ease-in-out;
+}
+
+.darkmode-link {
+  display: block;
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  background: transparent;
+  box-shadow: none;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.darkmode-link::after {
+  content: none !important;
+}
+
+.dark-off,
+.dark-on {
+  z-index: 2;
+  opacity: 0;
+}
+
+.dark-on {
+  display: none;
+}
+
+
+
+#nav-light {
+  display: inline-block;
+}
+
+#nav-dark {
+  display: none;
+}
+
+
+.toggle-bg,
+.toggle-wrapper {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
+
+.nav-style {
+  text-align: center;
+  background-image: linear-gradient(to left, var(--accent-color) 85%, transparent 100%);
+  padding: 0 1em 0 5em;
+  position: absolute;
+  height: 3em;
+  right: 0;
+  font-family: imperitum, cursive;
+}
+
+.nav-style ul {
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  list-style-type: none;
+}
+
+.nav-style ul li {
+  text-align: center;
+  padding: 1em;
+  top: -0.5em;
+  align-content: center;
+  position: relative;
+  display: inline-block;
+}
+
+.nav_active {
+  cursor: default;
+  pointer-events: none;
+  border-left: 1px solid var(--text) !important;
+  border-right: 1px solid var(--text) !important;
+  height: 2em;
+  top: -0.5em;
+  padding: 0 0 0 0;
+  background-color: var(--background-color);
+}
+
+
+@view-transition {
+  #navigation: auto;
+}
+
+@keyframes FadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+main {
+  view-transition-name: main-content;
+}
+
+::view-transition-group(main-content) {
+  background: var(--background-color);
+}
+
+::view-transition-old(main-content) {
+  animation: FadeOut 0.5s ease-out both;
+}
+
+::view-transition-new(main-content) {
+  opacity: 0;
+  animation: FadeIn 0.25s ease-in 0.25s both;
+}
+
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #FFF;
+  color: #000;
+  padding: 10px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1678c3;
+  padding-bottom: 1em;
+}
+
+@media (max-width: 1420px) {
+  header {
+    justify-content: flex-start;
+  }
+
+  .toggle-wrapper {
+    position: absolute !important;
+    top: 10px !important;
+    left: 50% !important;
+  }
+}
+
+@media (max-width: 850px) {
+  header {
+    flex-direction: column-reverse;
+  }
+
+  .nav-style {
+    justify-content: center;
+    right: revert;
+    background-image: linear-gradient(to left, transparent 0%, var(--accent-color) 15%, var(--accent-color) 85%, transparent 100%);
+    padding: 0 5em 0 5em;
+  }
+
+  .logo {
+    padding-bottom: 4.5em;
+  }
+
+  .scrolling-content {
+    display: inline-block;
+    overflow-x: hidden;
+    width: max-content;
+    white-space: nowrap;
+    flex-shrink: 0;
+    animation: scrollLeft 30s linear infinite;
+  }
+
+  .toggle-wrapper {
+    position: absolute !important;
+    top: 10px !important;
+    left: 50% !important;
+  }
+
+  .background {
+    padding: 1rem 0.5rem !important;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  td {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  td {
+    padding: 10px 0 !important;
+    box-sizing: border-box;
+  }
+
+  td img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 400px;
+    display: block;
+    margin: 20px auto !important;
+  }
+}
+
+.logo {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: #398AE6;
+}
+
+header img {
+  width: 7em;
+  height: auto;
+}
+
+header p {
+  margin-top: 0;
+  font-family: cursive;
+}
+
+header h1 {
+  margin: 1em 0 0 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+.background {
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+  width: 100%;
+  min-height: 100%;
+  padding: 2rem 2rem;
+}
+
+a:not(.link-dark):not(.skip-link):not(.persistence-link) {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text);
+}
+
+a .link-dark:not(.skip-link):not(.persistence-link):root:has#light:target:root:has(#main-light:target) {
+  position: relative;
+  display: none;
+  text-decoration: none;
+  color: var(--text);
+}
+
+a:not(.nav-style *) {
+  font-weight: bold;
+  color: var(--link-color);
+}
+
+a:not(.persistence-link):not(.skip-link)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  background-color: var(--text-color);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+a:not(.persistence-link):not(.skip-link):hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+a:not(.nav-style *)::after {
+  background-color: var(--link-color);
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+a::after {
+  transition: background-color 0.4s ease;
+}
+
+body {
+  position: relative;
+  background-color: var(--background-color);
+}
+
+
+hr {
+  background-color: var(--background-color);
+}
+
+footer {
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+footer a {
+  z-index: 1;
+}
+
+.expand {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+.expand:hover {
+  transform: scale(1.5);
+  z-index: 4;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(100vw);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.scrolling-content {
+  display: inline-block;
+  overflow-x: hidden;
+  width: max-content;
+  white-space: nowrap;
+  flex-shrink: 0;
+  animation: scrollLeft 30s linear infinite;
+}
+
+
+
+.ticker-wrapper {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.pause-check:checked~.scrolling-content {
+  animation-play-state: paused;
+}
+
+.pause-label {
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+.pause-check:checked~.pause-label::after {
+  content: "▶︎";
+}
+
+.pause-check:not(:checked)~.pause-label::after {
+  content: "⏸";
+}
+
+
+:root:has(#dark:target) .pause-label,
+:root:has(#main-dark:target) .pause-label {
+  font-size: 20px;
+  position: relative;
+  z-index: 10;
+  color: #ffb3b3;
+}
+
+.pause-label {
+  font-size: 20px;
+  position: relative;
+  z-index: 10;
+  color: #b00020;
+}
+
+.scrolling-content {
+  position: relative;
+  z-index: 1;
+  /* Lower number = behind the button */
+}
+
+.skip-link:focus {
+  top: 0;
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+.icon {
+  height: 20px;
+  width: auto;
+  float: inline-end;
+  margin-left: 5px;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 610px) {
+  .nav-style ul li {
+    height: auto !important;
+    display: flex;
+  }
+
+  .nav-style ul li>a {
+    line-height: 1.1;
+  }
+
+  .nav-style ul li>a>.icon {
+    float: none !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+}
+
+.icon-light-mode {
+  display: inline-block;
+}
+
+.icon-dark-mode {
+  display: none;
+}
+
+:root:has(#dark:target) .icon-light-mode,
+:root:has(#main-dark:target) .icon-light-mode {
+  display: none;
+}
+
+:root:has(#dark:target) .icon-dark-mode,
+:root:has(#main-dark:target) .icon-dark-mode {
+  display: inline-block;
+}
