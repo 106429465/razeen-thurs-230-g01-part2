@@ -109,7 +109,7 @@
         <details>
           <!-- This filler text was created by ChatGPT -->
           <summary>
-            <span>Clinical Care Coordinator <a class="link-light">HMLC1</a><a class="link-dark">HMLA7</a></span>
+            <span>Clinical Care Coordinator <a class="link-light">HMLC1</a><a class="link-dark">HMLC1</a></span>
           </summary>
 
           <h4>Role description</h4>
@@ -128,7 +128,7 @@
 
           <!-- This image was created by ChatGPT -->
           <aside>
-            <img class="image" src="/images/jobs/clinicalcarecoordinator.png" alt="Smaller Storefront Photo">
+            <img class="image" src="../images/jobs/clinicalcarecoordinator.png" alt="Smaller Storefront Photo">
           </aside>
 
           <!-- This filler text was created by ChatGPT -->
@@ -156,8 +156,8 @@
           </ul>
 
 
-          <a href="/apply#light" class="link-light">Apply Now!</a>
-          <a href="/apply#dark" class="link-dark">Apply Now!</a>
+          <a href="../apply#light" class="link-light">Apply Now!</a>
+          <a href="../apply#dark" class="link-dark">Apply Now!</a>
           <br>
 
         </details>
@@ -185,7 +185,7 @@
 
           <!-- This image was created by ChatGPT -->
           <aside>
-            <img class="image" src="/images/jobs/healthservicessupportofficer.png" alt="Smaller Storefront Photo">
+            <img class="image" src="../images/jobs/healthservicessupportofficer.png" alt="Health Services Support Officer Photo">
           </aside>
 
           <h4>Key Responsibilities</h4>
@@ -211,8 +211,8 @@
             <li>Training in first aid or similar support-focused certifications.</li>
           </ul>
 
-          <a href="/apply#light" class="link-light">Apply Now!</a>
-          <a href="/apply#dark" class="link-dark">Apply Now!</a>
+          <a href="../apply#light" class="link-light">Apply Now!</a>
+          <a href="../apply#dark" class="link-dark">Apply Now!</a>
           <br>
 
         </details>
