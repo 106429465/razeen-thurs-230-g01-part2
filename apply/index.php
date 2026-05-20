@@ -43,24 +43,8 @@
           <h2 style="font-size:25px;"><em>Health That Truly Performs</em></h2>
         </div>
       </div>
-      <nav id="nav-light" class='nav-style'>
-        <ul>
-          <li><a href="/#light">Home<img class="icon" src="/images/icons/home-icon-light.png" alt=""></a></li>
-          <li><a href="/jobs#light">Jobs<img class="icon" src="/images/icons/jobs-icon-light.png" alt=""></a></li>
-          <li class="nav_active"><a href="apply#light">Apply<img class="icon" src="/images/icons/apply-icon-light.png"
-                alt=""></a></li>
-          <li><a href="/about#light">About<img class="icon" src="/images/icons/about-icon-light.png" alt=""></a></li>
-        </ul>
-      </nav>
-      <nav id="nav-dark" class='nav-style'>
-        <ul>
-          <li><a href="/#dark">Home<img class="icon" src="/images/icons/home-icon-dark.png" alt=""></a></li>
-          <li><a href="/jobs#dark">Jobs<img class="icon" src="/images/icons/jobs-icon-dark.png" alt=""></a></li>
-          <li class="nav_active"><a href="apply#dark">Apply<img class="icon" src="/images/icons/apply-icon-dark.png"
-                alt=""></a></li>
-          <li><a href="/about#dark">About<img class="icon" src="/images/icons/about-icon-dark.png" alt=""></a></li>
-        </ul>
-      </nav>
+      <?php $current_page = 'apply'; ?>
+      <?php include '../include/nav.inc'; ?>
     </header>
     <hr>
     <main id="main-content">
