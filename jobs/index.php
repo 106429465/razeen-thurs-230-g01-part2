@@ -104,119 +104,57 @@
       </section>
 
       <h3>Here are our available jobs!</h3>
+      <?php 
+      require_once "../settings.php";
+      $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 
-      <section class="job-listing">
-        <details>
-          <!-- This filler text was created by ChatGPT -->
-          <summary>
-            <span>Clinical Care Coordinator <a class="link-light">HMLC1</a><a class="link-dark">HMLC1</a></span>
-          </summary>
+      if (!$conn) {
+        echo "<p>Unable to connect to the database server.</p>"
+        . "<p>Error code " . mysqli_connect_errno() . ": " . mysqli_connect_error() . "</p>";
+        exit();
+      }
 
-          <h4>Role description</h4>
-          <p>
-            A frontline role responsible for guiding patients through their care journey,
-            ensuring clear communication, timely support, and seamless coordination between
-            clinicians, families, and service teams.
-          </p>
+      else {
+        $sql = "SELECT * FROM jobs";
+        $result = mysqli_query($conn, $sql);
 
-          <h4>Salary & Reporting Line</h4>
-          <ul>
-            <li><strong>Salary:</strong> AUD $68,000-$78,000 per year <em>(depending on experience)</em>
-            </li>
-            <li><strong>Reports to:</strong> Senior Clinical Operations Manager</li>
-          </ul>
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+              echo "<section class='job-listing'>";
+              echo "<details>";
+              echo "<!-- This filler text was created by ChatGPT -->";
+              echo "<summary>
+                      <span>" . $row['job_title'] .  "<a class='link-light'> " . $row['ref_num'] . "</a><a class='link-dark'> " . $row['ref_num'] . "</a></span>
+                    </summary>";
+              echo "<h4>Role description</h4>
+                    <p>" . $row['job_desc'] . "</p>";
+              echo "<h4>Salary & Reporting Line</h4>
+                    <ul>
+                      <li><strong>Salary:</strong> AUD $" . $row['salary'] . "</li>
+                      <li><strong>Reports to:</strong> " . $row['chain_command'] . "</li>
+                    </ul>";
+              echo "<!-- This image was created by ChatGPT -->
+                    <aside>
+                      <img class='image' src='../images/jobs/clinicalcarecoordinator.png' alt='Smaller Storefront Photo'>
+                    </aside>
 
-          <!-- This image was created by ChatGPT -->
-          <aside>
-            <img class="image" src="../images/jobs/clinicalcarecoordinator.png" alt="Smaller Storefront Photo">
-          </aside>
-
-          <!-- This filler text was created by ChatGPT -->
-          <h4>Key Responsibilities</h4>
-          <ul>
-            <li>Coordinate patient appointments, follow-ups, and care pathways.</li>
-            <li>Maintain accurate records and ensure privacy compliance.</li>
-            <li>Communicate clearly with clinicians, families, and support teams.</li>
-            <li>Monitor caseload progress and escalate issues when needed.</li>
-          </ul>
-
-          <h4>Essential Requirements</h4>
-          <ol>
-            <li>Experience in healthcare admin, patient coordination, or support services.</li>
-            <li>Strong communication skills and empathy in patient interactions.</li>
-            <li>Confident using digital systems and managing detailed records.</li>
-            <li>Ability to work collaboratively in a multidisciplinary team.</li>
-          </ol>
-
-          <h4>Preferable Requirements</h4>
-          <ul>
-            <li>Certificate or Diploma in Health Administration or related field.</li>
-            <li>Experience in private healthcare or allied health settings.</li>
-            <li>Familiarity with clinical terminology and workflows.</li>
-          </ul>
-
-
-          <a href="../apply#light" class="link-light">Apply Now!</a>
-          <a href="../apply#dark" class="link-dark">Apply Now!</a>
-          <br>
-
-        </details>
-
-      </section>
-
-      <section class="job-listing">
-        <details>
-          <summary>
-            <!-- This filler text was created by ChatGPT -->
-            <span>Health Services Support Officer <a class="link-light">HMLA7</a><a class="link-dark">HMLA7</a></span>
-          </summary>
-
-          <h4>Role description</h4>
-          <p>
-            A service delivery role focused on operational support, patient assistance,
-            and ensuring smooth day-to-day functioning of HealThML's care environment.
-          </p>
-
-          <h4>Salary & Reporting Line</h4>
-          <ul>
-            <li><strong>Salary:</strong> AUD $58,000-$66,000 per year</li>
-            <li><strong>Reports to:</strong> Operations & Service Delivery Lead</li>
-          </ul>
-
-          <!-- This image was created by ChatGPT -->
-          <aside>
-            <img class="image" src="../images/jobs/healthservicessupportofficer.png" alt="Health Services Support Officer Photo">
-          </aside>
-
-          <h4>Key Responsibilities</h4>
-          <ul>
-            <li>Support daily operations including scheduling and documentation.</li>
-            <li>Assist clinicians by preparing resources and managing workflow tasks.</li>
-            <li>Provide friendly, accessible assistance to patients and visitors.</li>
-            <li>Maintain organised administrative systems aligned with HealThML standards.</li>
-          </ul>
-
-          <h4>Essential Requirements</h4>
-          <ol>
-            <li>Experience in admin, customer service, or support roles.</li>
-            <li>Strong organisational and multitasking skills.</li>
-            <li>Confident using digital tools and communication platforms.</li>
-            <li>Demonstrated reliability, initiative, and professionalism.</li>
-          </ol>
-
-          <h4>Preferable Requirements</h4>
-          <ul>
-            <li>Experience in healthcare, disability, or community services.</li>
-            <li>Understanding of privacy and confidentiality requirements.</li>
-            <li>Training in first aid or similar support-focused certifications.</li>
-          </ul>
-
-          <a href="../apply#light" class="link-light">Apply Now!</a>
-          <a href="../apply#dark" class="link-dark">Apply Now!</a>
-          <br>
-
-        </details>
-      </section>
+                    <!-- This filler text was created by ChatGPT -->";
+              echo "<h4>Key Responsibilities</h4>
+                    <ul>" . $row['resp'] . "</ul>";
+              echo "<h4>Essential Requirements</h4>
+                    <ol>" . $row['ess_req'] . "</ol>";
+              echo "<h4>Preferable Requirements</h4>
+                    <ul>" . $row['pre_req'] . "</ul>";
+              echo "<a href='../apply#light' class='link-light'>Apply Now!</a>
+                    <a href='../apply#dark' class='link-dark'>Apply Now!</a>
+                    <br>
+                    </details>
+                    </section>";
+              }
+          
+        }
+      }
+      ?>
       <hr>
       <?php include '../include/footer.inc'; ?>
     </main>
