@@ -54,7 +54,6 @@
             <input type="text" id="search" name="search" required>        
             <button type="submit">Search</button>
           </form>
-
           <h3>Why Join HealThML?</h3>
           <p>
             At HealThML, we combine healthcare expertise with modern digital systems to deliver reliable and
@@ -97,10 +96,14 @@
       }
 
       else {
-        $sql = "SELECT * FROM jobs";
-        $result = mysqli_query($conn, $sql);
+
+        if (isset($_GET['search'])) {
+          $search = mysqli_real_escape_string($conn, $_GET['search']);
+          $sql = "SELECT * FROM jobs WHERE job_title LIKE '%$search%' OR ref_num LIKE '%$search%'";
+          $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
+            echo "<p>Showing results that contain 	&quot;" . $search . "&quot;:</p>";
             while ($row = mysqli_fetch_assoc($result)) {
               echo "<section class='job-listing'>";
               echo "<details>";
@@ -135,8 +138,15 @@
               }
           
         }
+        else {
+          echo "<p>No results found for '" . $search . "'. Please try a different search term.</p>";
+        }
       }
+    }
       ?>
+      <form action="../jobs/index.php">            
+            <button type="submit">Exit Search</button>
+          </form>
       <hr>
       <?php include '../include/footer.inc'; ?>
     </main>
