@@ -23,30 +23,6 @@
 </head>
 
 <body>
-  <a href="#main-dark" class="skip-link link-light" aria-label="Skip to main content">Skip to main content</a>
-  <a href="#main-light" class="skip-link link-dark" aria-label="Skip to main content">Skip to main content</a>
-
-  <div class="toggle-bg">
-    <div class="toggle-wrapper">
-      <a href="#dark" class="persistence-link link-dark" aria-hidden="true" aria-label="switch to dark mode toggle"></a>
-      <a href="#light" class="persistence-link link-light" aria-hidden="true"
-        aria-label="switch to light mode toggle"></a>
-    </div>
-  </div>
-
-  <div id="dark"></div>
-  <div id="light"></div>
-  <div class="background">
-
-
-    <header>
-      <div class="logo">
-        <img src="../images/logo_transparent.png" alt="Company Logo">
-        <div class="logo_text">
-          <h1>HealThML</h1>
-          <h2 style="font-size:25px;"><em>Health That Truly Performs</em></h2>
-        </div>
-      </div>
 
       <?php $current_page = 'jobs'; ?>
       <?php include '../include/nav.inc'; ?>
@@ -124,7 +100,7 @@
               echo "<details>";
               echo "<!-- This filler text was created by ChatGPT -->";
               echo "<summary>
-                      <span>" . $row['job_title'] .  "<a class='link-light'> " . $row['ref_num'] . "</a><a class='link-dark'> " . $row['ref_num'] . "</a></span>
+                      <span>" . $row['job_title'] .  " <a class='link-light'>" . $row['ref_num'] . "</a><a class='link-dark'>" . $row['ref_num'] . "</a></span>
                     </summary>";
               echo "<h4>Role description</h4>
                     <p>" . $row['job_desc'] . "</p>";
