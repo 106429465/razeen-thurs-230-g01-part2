@@ -25,7 +25,7 @@
 <body>
 
       <?php $current_page = 'jobs'; ?>
-      <?php include '../include/nav.inc'; ?>
+      <?php include '../include/header.inc'; ?>
     </header>
 
     <hr>

@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Description">
-  <meta name="keywords" content="Keywords">
-  <title>HealThML Job Description</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <link rel="stylesheet" type="text/css" href="../styles/jobs_style.css">
-  <link rel="stylesheet" type="text/css" href="../styles/style.css">
-  <style>
-    h1 {
-      line-height: 20px;
-      font-size: 40px;
-    }
-
-    h2 {
-      line-height: 0px;
-    }
-  </style>
-</head>
-
-<body>
-
-      <?php $current_page = 'jobs'; ?>
-      <?php include '../include/nav.inc'; ?>
-    </header>
-
-    <hr>
-
+<?php
+    $current_page = 'Jobs';
+    include '../include/header.inc';
+?>
     <main id="main-content">
 
       <div id="main-dark"></div>
@@ -87,7 +59,7 @@
 
       <h3>Here are our available jobs!</h3>
       <?php 
-      require_once "../settings.php";
+      require_once "../settings/settings.php";
       $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 
       if (!$conn) {
@@ -137,10 +109,5 @@
         }
       }
       ?>
-      <hr>
       <?php include '../include/footer.inc'; ?>
-    </main>
 
-  </div>
-</body>
-</html>

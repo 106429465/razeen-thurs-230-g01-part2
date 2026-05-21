@@ -1,66 +1,8 @@
-<!DOCTYPE html>
-<html lang="en-au">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Description">
-  <meta name="keywords" content="Keywords">
-  <meta name="author" content="Tyler Stokes">
-
-  <meta property="og:title" content="HealThML">
-  <meta property="og:description"
-    content="HealThML is the custom HTML and CSS project designed by Tyler Stokes, Zain Khan, Jack Bailey, and Marley Brown">
-  <meta property="og:image" content="/images/logo_full.png">
-  <meta property="og:image:width" content="639">
-  <meta property="og:image:height" content="222">
-  <meta property="og:type" content="website">
-
-  <title>HealThML Home</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <link rel="stylesheet" type="text/css" href="styles/index_style.css">
-  <style>
-    h1 {
-      line-height: 20px;
-      font-size: 40px;
-    }
-
-    h2 {
-      line-height: 0px;
-    }
-  </style>
-</head>
-
-<body>
-
-  <a href="#main-dark" class="skip-link link-dark" aria-label="Skip to main content">Skip to main content</a>
-  <a href="#main-light" class="skip-link link-light" aria-label="Skip to main content">Skip to main content</a>
-
-  <div class="toggle-bg">
-    <div class="toggle-wrapper">
-      <a href="#dark" class="persistence-link link-dark" aria-hidden="true" aria-label="switch to dark mode toggle"></a>
-      <a href="#light" class="persistence-link link-light" aria-hidden="true"
-        aria-label="switch to light mode toggle"></a>
-    </div>
-  </div>
-
-  <div id="dark"></div>
-  <div id="light"></div>
-  <div class="background">
-    <header>
-      <div class="logo">
-        <img src="images/logo_transparent.png" alt="Company Logo">
-        <div class="logo_text">
-          <h1>HealThML</h1>
-          <h2 style="font-size:25px;"><em>Health That Truly Performs</em></h2>
-        </div>
-      </div>
-      <?php $current_page = 'home'; ?>
-      <?php include './include/nav.inc'; ?>
-    </header>
-    <hr>
+<?php
+    $current_page = 'Home';
+    include './include/header.inc';
+?>
+        
     <div class="ticker-wrapper">
       <input type="checkbox" id="pause-toggle" class="pause-check" aria-label="pause/resume scrolling-content">
       <label for="pause-toggle" class="pause-label">
@@ -168,9 +110,4 @@
         practices have kept this country beautiful for thousands of years.
       </p>
     </main>
-    <hr>
     <?php include './include/footer.inc'; ?>
-  </div>
-</body>
-
-</html>
