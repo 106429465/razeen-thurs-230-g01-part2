@@ -22,9 +22,9 @@ include '../include/header.inc';
         session_start();
         $conn = mysqli_connect($host,$user,$pwd,$sql_db);
 
-        $sql = "SELECT 1 FROM `eoi` LIMIT 1";
+        $sql = "DESCRIBE `eoi`";
         $eoi_exists = mysqli_query($conn, $sql);
-        if ($eoi !== false) {
+        if ($eoi_exists) {
             switch ($_POST['command']) {
                 case "EOI_all" :
                     # Get all Expressions Of Interest
