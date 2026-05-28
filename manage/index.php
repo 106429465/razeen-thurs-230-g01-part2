@@ -22,7 +22,8 @@ include '../include/header.inc';
         session_start();
         $conn = mysqli_connect($host,$user,$pwd,$sql_db);
 
-        $eoi_exists = mysqli_query('select 1 from `table_name` LIMIT 1');
+        $sql = "SELECT 1 FROM `eoi` LIMIT 1";
+        $eoi_exists = mysqli_query($conn, $sql);
         if ($eoi !== false) {
             switch ($_POST['command']) {
                 case "EOI_all" :
