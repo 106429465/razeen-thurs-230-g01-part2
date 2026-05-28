@@ -53,7 +53,6 @@ a {
   --background-image: url("../images/img_background_light.svg");
 }
 
-
 :root:not(:has(#light:target)):not(:has(#main-light:target)):has(#main-dark:target),
 :root:not(:has(#light:target)):not(:has(#main-light:target)):has(#dark:target) {
   --bg: black;
@@ -101,8 +100,6 @@ a {
   display: none !important;
 }
 
-
-
 :root:has(#dark:target) .link-light.skip-link,
 :root:has(#main-dark:target) .link-light.skip-link,
 :root:has(#light:target) .link-dark.skip-link,
@@ -110,14 +107,12 @@ a {
   visibility: collapse !important;
 }
 
-
 :root:has(#dark:target) .skip-link,
 :root:has(#main-dark:target) .skip-link {
   background: var(--background-color);
   color: var(--link-color);
   border: 1px solid #ffffff;
 }
-
 
 :root:has(#main-dark:target) #nav-light,
 :root:has(#dark:target) #nav-light {
@@ -134,7 +129,7 @@ a {
 }
 
 /* Prevent the theme logic from ever touching regular page links */
-a:not(.persistence-link):not(.skip-link):not(.link-dark) {
+a:not(.logo):not(.persistence-link):not(.skip-link):not(.link-dark) {
   display: inline-block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -455,26 +450,26 @@ html {
   padding: 2rem 2rem;
 }
 
-a:not(.link-dark):not(.skip-link):not(.persistence-link) {
+a:not(.logo):not(.link-dark):not(.skip-link):not(.persistence-link) {
   position: relative;
   display: inline-block;
   text-decoration: none;
   color: var(--text);
 }
 
-a .link-dark:not(.skip-link):not(.persistence-link):root:has#light:target:root:has(#main-light:target) {
+a.link-dark:not(.logo):not(.skip-link):not(.persistence-link):root:has#light:target:root:has(#main-light:target) {
   position: relative;
   display: none;
   text-decoration: none;
   color: var(--text);
 }
 
-a:not(.nav-style *) {
+a:not(.logo):not(.nav-style *) {
   font-weight: bold;
   color: var(--link-color);
 }
 
-a:not(.persistence-link):not(.skip-link)::after {
+a:not(.logo):not(.persistence-link):not(.skip-link)::after {
   content: '';
   position: absolute;
   left: 0;
@@ -487,21 +482,21 @@ a:not(.persistence-link):not(.skip-link)::after {
   transition: transform 0.25s ease-out;
 }
 
-a:not(.persistence-link):not(.skip-link):hover::after {
+a:not(.logo):not(.persistence-link):not(.skip-link):hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
-a:not(.nav-style *)::after {
+a:not(.logo):not(.nav-style *)::after {
   background-color: var(--link-color);
 }
 
-a:hover::after {
+a:not(.logo):hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
-a::after {
+a:not(.logo)::after {
   transition: background-color 0.4s ease;
 }
 
@@ -554,8 +549,6 @@ footer a {
   flex-shrink: 0;
   animation: scrollLeft 30s linear infinite;
 }
-
-
 
 .ticker-wrapper {
   display: flex;

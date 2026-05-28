@@ -93,8 +93,8 @@ td:hover {
   }
 }
 
-h1:not(#title),
-h2 {
+main > h1:not(#title),
+h2:not(.logo) {
   text-align: center;
 }
 

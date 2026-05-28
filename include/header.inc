@@ -69,13 +69,13 @@
 
 <div class="background">
     <header>
-        <div class="logo">
+        <a class="logo" href="..#light">
             <img src="../images/logo_transparent.png" alt="Company Logo">
             <div class="logo_text">
                 <h1>HealThML</h1>
                 <h2 style="font-size:25px;"><em>Health That Truly Performs</em></h2>
             </div>
-        </div>
+        </a>
 
         <nav id="nav-light" class='nav-style'>
             <ul>
