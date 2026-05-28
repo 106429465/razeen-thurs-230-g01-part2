@@ -450,7 +450,7 @@ html {
   padding: 2rem 2rem;
 }
 
-a:not(.logo):not(.link-dark):not(.skip-link):not(.persistence-link) {
+a:not(.logo):not(.skip-link):not(.persistence-link) {
   position: relative;
   display: inline-block;
   text-decoration: none;
