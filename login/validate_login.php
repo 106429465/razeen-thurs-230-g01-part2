@@ -12,6 +12,8 @@ include '../include/header.inc';
         session_start();
         $conn = mysqli_connect($host,$user,$pwd,$sql_db);
 
+        # Clean PHP request
+
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
 
