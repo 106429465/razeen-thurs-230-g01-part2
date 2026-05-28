@@ -59,7 +59,7 @@
 
       <h3>Here are our available jobs!</h3>
       <?php 
-      require_once "../settings/settings.php";
+      require_once "../settings.php";
       $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 
       if (!$conn) {

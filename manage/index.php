@@ -8,9 +8,12 @@ include '../include/header.inc';
     <?php
     session_start();
     if (isset($_SESSION['user'])) {
+        # Debug
         ini_set('display_errors', '1');
         ini_set('display_startup_errors', '1');
         error_reporting(E_ALL);
+        #
+
         echo "Welcome, " .$_SESSION['user'];
         include 'manage.inc';
         require_once "../settings.php";
@@ -34,7 +37,7 @@ include '../include/header.inc';
                 case "EOI_reference" :
                     # Get Expressions Of Interest with given job reference
                     $search = mysqli_real_escape_string($conn, $_POST['search_reference']);
-                    $stmt = $conn->prepare("SELECT * FROM `eoi` WHERE `eoi_id` = ?");
+                    $stmt = $conn->prepare("SELECT * FROM `eoi` WHERE `job_ref_num` LIKE ?");
                     $stmt->bind_param("s", $search);
                     $stmt->execute();
                     $result = $stmt->get_result();
