@@ -86,7 +86,7 @@
               </dd>
               <dt>Quote</dt>
               <dd><strong>"我不會說中文"</strong><br>
-                > "I don't speak Chinese"</dd>
+                ("I don't speak Chinese")</dd>
             </dl>
           </div>
           <div class="quote_entry">
@@ -102,7 +102,7 @@
               </dd>
               <dt>Quote</dt>
               <dd><strong>"لا اقدر ان اتكلم العربية كي تقدر ان تتكلم"</strong><br>
-                > "I can't speak Arabic like you can"</dd>
+                ("I can't speak Arabic like you can")</dd>
             </dl>
           </div>
           <div class="quote_entry">
@@ -116,7 +116,7 @@
               </dd>
               <dt>Quote</dt>
               <dd><strong>"Hindi ako marunong magsalita ng Tagalog"</strong><br>
-                > "I do not know how to speak Tagalog"</dd>
+                ("I do not know how to speak Tagalog")</dd>
             </dl>
           </div>
           <div class="quote_entry">
@@ -131,7 +131,7 @@
               </dd>
               <dt>Quote</dt>
               <dd><strong>"英語が話せません"</strong></dd>
-              <dd>> "I cannot speak English"</dd>
+              <dd>("I cannot speak English")</dd>
             </dl>
           </div>
         </section>
