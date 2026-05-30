@@ -5,6 +5,8 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+
+    $prefix = ($current_page == 'Home' ? '.':'..');
 ?>
 
 <head>
@@ -28,7 +30,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <?php
     if ($current_page == 'Home') {
-        $stylesheet = '../styles/index_style.css';
+        $stylesheet = 'styles/index_style.css';
     } elseif ($current_page == 'Jobs') {
         $stylesheet = '../styles/jobs_style.css';
     } elseif ($current_page == 'Apply') {
@@ -72,7 +74,7 @@
 <div class="background">
     <header>
         <a class="logo" href="..#light">
-            <img src="../images/logo_transparent.png" alt="Company Logo">
+            <img src="<?php echo($prefix);?>/images/logo_transparent.png" alt="Company Logo">
             <div class="logo_text">
                 <h1>HealThML</h1>
                 <h2 style="font-size:25px;"><em>Health That Truly Performs</em></h2>
@@ -81,18 +83,18 @@
 
         <nav id="nav-light" class='nav-style'>
             <ul>
-                <li<?php echo($current_page == 'Home' ? ' class="nav_active"' :'');?>><a href="..#light">Home<img class="icon" src="../images/icons/home-icon-light.png" alt=""></a></li>
-                <li<?php echo($current_page == 'Jobs' ? ' class="nav_active"' :'');?>><a href="../jobs#light">Jobs<img class="icon" src="../images/icons/jobs-icon-light.png" alt=""></a></li>
-                <li<?php echo($current_page == 'Apply' ? ' class="nav_active"' :'');?>><a href="../apply#light">Apply<img class="icon" src="../images/icons/apply-icon-light.png" alt=""></a></li>
-                <li<?php echo($current_page == 'About' ? ' class="nav_active"' :'');?>><a href="../about#light">About<img class="icon" src="../images/icons/about-icon-light.png" alt=""></a></li>
+                <li<?php echo($current_page == 'Home' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>#light">Home<img class="icon" src="<?php echo($prefix);?>/images/icons/home-icon-light.png" alt=""></a></li>
+                <li<?php echo($current_page == 'Jobs' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/jobs#light">Jobs<img class="icon" src="<?php echo($prefix);?>/images/icons/jobs-icon-light.png" alt=""></a></li>
+                <li<?php echo($current_page == 'Apply' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/apply#light">Apply<img class="icon" src="<?php echo($prefix);?>/images/icons/apply-icon-light.png" alt=""></a></li>
+                <li<?php echo($current_page == 'About' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/about#light">About<img class="icon" src="<?php echo($prefix);?>../images/icons/about-icon-light.png" alt=""></a></li>
             </ul>
         </nav>
         <nav id="nav-dark" class='nav-style'>
             <ul>
-                <li<?php echo($current_page == 'Home' ? ' class="nav_active"' :'');?>><a href="..#dark">Home<img class="icon" src="../images/icons/home-icon-dark.png" alt=""></a></li>
-                <li<?php echo($current_page == 'Jobs' ? ' class="nav_active"' :'');?>><a href="../jobs#dark">Jobs<img class="icon" src="../images/icons/jobs-icon-dark.png" alt=""></a></li>
-                <li<?php echo($current_page == 'Apply' ? ' class="nav_active"' :'');?>><a href="../apply#dark">Apply<img class="icon" src="../images/icons/apply-icon-dark.png" alt=""></a></li>
-                <li<?php echo($current_page == 'About' ? ' class="nav_active"' :'');?>><a href="../about#dark">About<img class="icon" src="../images/icons/about-icon-dark.png" alt=""></a></li>
+                <li<?php echo($current_page == 'Home' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>#dark">Home<img class="icon" src="<?php echo($prefix);?>/images/icons/home-icon-dark.png" alt=""></a></li>
+                <li<?php echo($current_page == 'Jobs' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/jobs#dark">Jobs<img class="icon" src="<?php echo($prefix);?>/images/icons/jobs-icon-dark.png" alt=""></a></li>
+                <li<?php echo($current_page == 'Apply' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/apply#dark">Apply<img class="icon" src="<?php echo($prefix);?>/images/icons/apply-icon-dark.png" alt=""></a></li>
+                <li<?php echo($current_page == 'About' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/about#dark">About<img class="icon" src="<?php echo($prefix);?>/images/icons/about-icon-dark.png" alt=""></a></li>
             </ul>
         </nav>
 
