@@ -1,6 +1,6 @@
 
 <?php
-$current_page = 'Login';
+$current_page = 'Manage';
 include '../include/header.inc';
 ?>
 

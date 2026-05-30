@@ -1,4 +1,4 @@
-<form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post">
+<form action="." method="post">
     <div id="form_listall">
         <button type="submit"
                 name="command" value="EOI_all">
@@ -6,8 +6,8 @@
         </button>
     </div>
 </form>
-
-<form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post">
+<br>
+<form action="." method="post">
     <div id="form_listbyref">
         <button type="submit"
                 name="command" value="EOI_reference">
@@ -18,7 +18,7 @@
     </div>
 </form>
 
-<form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post">
+<form action="." method="post">
     <div id="form_listbyname">
         <button type="submit"
                 name="command" value="EOI_firstname">
@@ -31,7 +31,7 @@
     </div>
 </form>
 
-<form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post">
+<form action="." method="post">
     <div id="form_deletebyref">
         <button type="submit"
                 name="command" value="EOI_deletebyref">
@@ -42,7 +42,7 @@
     </div>
 </form>
 
-<form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post">
+<form action="." method="post">
     <div id="form_sort">
         <button type="submit"
                 name="command" value="EOI_sortby">

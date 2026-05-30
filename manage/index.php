@@ -1,6 +1,5 @@
-
 <?php
-$current_page = 'Login';
+$current_page = 'Manage';
 include '../include/header.inc';
 ?>
 
@@ -8,20 +7,12 @@ include '../include/header.inc';
     <?php
     session_start();
     if (isset($_SESSION['user'])) {
-        # Debug
-        ini_set('display_errors', '1');
-        ini_set('display_startup_errors', '1');
-        error_reporting(E_ALL);
-        #
-
         echo "Welcome, " .$_SESSION['user'];
+        echo "<br><br>";
         include 'manage.inc';
         require_once "../settings.php";
 
         echo "<br>";
-        echo $_POST['command'];
-        echo "<br>";
-
         session_start();
         $conn = mysqli_connect($host,$user,$pwd,$sql_db);
 
@@ -44,16 +35,25 @@ include '../include/header.inc';
                 break;
                 case "EOI_firstname" :
                     # Get Expressions Of Interest with given first/last name
-                    $search = mysqli_real_escape_string($conn, $_POST['search_reference']);
-                    $stmt = $conn->prepare("SELECT * FROM `eoi` WHERE `eoi_id` = ?");
-                    $stmt->bind_param("s", $search);
+                    if (isset($conn, $_POST['search_firstname'])) {
+                        $search_firstname = mysqli_real_escape_string($conn, $_POST['search_firstname']);
+                    } else {
+                        $search_firstname = "";
+                    }
+                    if (isset($conn, $_POST['search_lastname'])) {
+                        $search_lastname = mysqli_real_escape_string($conn, $_POST['search_lastname']);
+                    } else {
+                        $search_lastname = "";
+                    }
+                    $stmt = $conn->prepare("SELECT * FROM `eoi` WHERE `first_name` LIKE ? OR `last_name` LIKE ?");
+                    $stmt->bind_param("ss", $search_firstname, $search_lastname);
                     $stmt->execute();
                     $result = $stmt->get_result();
                 break;
                 case "EOI_deletebyref" :
                     # Delete Expressions Of Interest with given job reference
                     $delete = mysqli_real_escape_string($conn, $_POST['delete_reference']);
-                    $stmt = $conn->prepare("DELETE FROM `eoi` WHERE `eoi_id` = ?");
+                    $stmt = $conn->prepare("DELETE FROM `eoi` WHERE `job_ref_num` LIKE ?");
                     $stmt->bind_param("s", $delete);
                     $stmt->execute();
                     $sql = "SELECT * FROM `eoi` WHERE 1";
@@ -61,9 +61,10 @@ include '../include/header.inc';
                 break;
                 case "EOI_sortby" :
                     # Get all expressions of interest, sorted by given category
+                    echo $_POST['sort_id'];
                     $sort = mysqli_real_escape_string($conn, $_POST['sort_id']);
-                    $stmt = $conn->prepare("SELECT * FROM `eoi` ORDER BY ? ASC");
-                    $stmt->bind_param("s", $sort);
+                    $stmt = $conn->prepare("SELECT * FROM `eoi` ORDER BY " . $sort . " ASC");
+                    #$stmt->bind_param("s", $sort);
                     $stmt->execute();
                     $result = $stmt->get_result();
                 break;
@@ -71,50 +72,82 @@ include '../include/header.inc';
 
             # Print SQL result into HTML table
             if ($_POST['command'] == "") {
-                echo "<p>Please select an option above</p>";
-            } else {
-                if (mysqli_num_rows($result) > 0) {
-                    echo "<table border='1' cellpadding='5'>";
-                    echo "<tr>
-                    <th>ID</th>
-                    <th>Job Reference</th>
-                    <th>Surname</th>
-                    <th>Given Name</th>
-                    <th>Date of Birth</th>
-                    <th>Gender</th>
-                    <th>Street Address</th>
-                    <th>Suburb</th>
-                    <th>Postcode</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Skills</th>
-                    <th>Other Skills</th>
-                    <th>Status</th>
-                    </tr>";
-
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>" . $row['eoi_id'] . "</td>";
-                        echo "<td>" . $row['job_ref_num'] . "</td>";
-                        echo "<td>" . $row['last_name'] . "</td>";
-                        echo "<td>" . $row['first_name'] . "</td>";
-                        echo "<td>" . $row['date_of_birth'] . "</td>";
-                        echo "<td>" . $row['gender'] . "</td>";
-                        echo "<td>" . $row['street_address'] . "</td>";
-                        echo "<td>" . $row['suburb'] . "</td>";
-                        echo "<td>" . $row['postcode'] . "</td>";
-                        echo "<td>" . $row['email'] . "</td>";
-                        echo "<td>" . $row['phone_number'] . "</td>";
-                        echo "<td>" . $row['skills'] . "</td>";
-                        echo "<td>" . $row['other_skills'] . "</td>";
-                        echo "<td>" . $row['status'] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo "<p>No results found.</p>";
-                }
+                $sql = "SELECT * FROM `eoi` WHERE 1";
+                $result = mysqli_query($conn, $sql);
             }
+            if (mysqli_num_rows($result) > 0) {
+                echo "<table border='1' cellpadding='5'>";
+                echo "<tr>
+                <th>ID</th>
+                <th>Job Reference</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Street Address</th>
+                <th>Suburb</th>
+                <th>Postcode</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Skills</th>
+                <th>Other Skills</th>
+                <th>Status</th>
+                </tr>";
+
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    if (isset($_POST['eoi_' . $row['eoi_id'] . '_status'])) {
+                        echo "A";
+                        $new_status = mysqli_real_escape_string($conn, $_POST['eoi_' . $row['eoi_id'] . '_status']);
+                        $stmt = $conn->prepare("UPDATE `eoi` SET `status`=? WHERE `eoi_id` = ?");
+                        $stmt->bind_param("ss", $new_status, $row['eoi_id']);
+                        $stmt->execute();
+                        $row['status'] = $new_status;
+                    }
+
+                    echo "<tr>";
+                    echo "<td>" . $row['eoi_id'] . "</td>";
+                    echo "<td>" . $row['job_ref_num'] . "</td>";
+                    echo "<td>" . $row['first_name'] . "</td>";
+                    echo "<td>" . $row['last_name'] . "</td>";
+                    echo "<td>" . $row['date_of_birth'] . "</td>";
+                    echo "<td>" . $row['gender'] . "</td>";
+                    echo "<td>" . $row['street_address'] . "</td>";
+                    echo "<td>" . $row['suburb'] . "</td>";
+                    echo "<td>" . $row['postcode'] . "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
+                    echo "<td>" . $row['phone_number'] . "</td>";
+                    echo "<td>" . $row['skills'] . "</td>";
+                    echo "<td>" . $row['other_skills'] . "</td>";
+                    echo "
+                    <td>
+                        <form action='.' method='post'>
+                            <select name='eoi_" . $row['eoi_id'] . "_status' id='dropdown_status' onchange='this.form.submit()'>
+                                <option value='' selected disabled hidden>" . $row['status'] . "</option>
+                                <option value='New'>New</option>
+                                <option value='Current'>Current</option>
+                                <option value='Final'>Final</option>
+                            </select>
+                        </form>
+                    </td>
+                    ";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p>No results found.</p>";
+            }
+            echo '
+            <br>
+            <form action="logout.php" method="post">
+                <div id="form_listall">
+                    <button type="submit">
+                        Sign Out
+                    </button>
+                </div>
+            </form>
+            ';
+
         } else {
             echo "<p>No results found.</p>";
         }
