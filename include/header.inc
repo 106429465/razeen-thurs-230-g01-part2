@@ -35,6 +35,8 @@
         $stylesheet = '../styles/apply_style.css';
     } elseif ($current_page == 'About') {
         $stylesheet = '../styles/about_style.css';
+    } elseif ($current_page == 'Manage') {
+        $stylesheet = '../styles/manage_style.css';
     } else {
           $stylesheet = '../styles/style.css';
     }
