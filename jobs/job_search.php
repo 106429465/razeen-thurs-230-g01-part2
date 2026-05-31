@@ -98,10 +98,12 @@
       else {
 
         if (isset($_GET['search'])) {
-          $search = mysqli_real_escape_string($conn, $_GET['search']);
-          $sql = "SELECT * FROM jobs WHERE job_title LIKE '%$search%' OR ref_num LIKE '%$search%'";
-          $result = mysqli_query($conn, $sql);
-
+          $search = $_GET['search']; 
+          $search_param = "%" . $search . "%";
+          $stmt = $conn->prepare("SELECT * FROM jobs WHERE job_title LIKE ? OR ref_num LIKE ?");
+          $stmt->bind_param("ss", $search_param, $search_param);
+          $stmt->execute();
+          $result = $stmt->get_result();
         if (mysqli_num_rows($result) > 0) {
             echo "<p>Showing results that contain 	&quot;" . $search . "&quot;:</p>";
             while ($row = mysqli_fetch_assoc($result)) {
