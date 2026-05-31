@@ -1,7 +1,7 @@
 <?php
 // Capture the theme from the URL if it exists
 $theme = isset($_GET['theme']) ? $_GET['theme'] : 'light'; 
-$form_action = ".?theme=$theme#$theme";
+$form_action = "#$theme";
 ?>
 
 <form action="<?php echo $form_action; ?>" method="post">
