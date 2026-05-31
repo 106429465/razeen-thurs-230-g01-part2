@@ -37,6 +37,8 @@
         $stylesheet = '../styles/apply_style.css';
     } elseif ($current_page == 'About') {
         $stylesheet = '../styles/about_style.css';
+    } elseif ($current_page == 'Login') {
+        $stylesheet = '../styles/manage_style.css';
     } elseif ($current_page == 'Manage') {
         $stylesheet = '../styles/manage_style.css';
     } else {
@@ -86,7 +88,8 @@
                 <li<?php echo($current_page == 'Home' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>#light">Home<img class="icon" src="<?php echo($prefix);?>/images/icons/home-icon-light.png" alt=""></a></li>
                 <li<?php echo($current_page == 'Jobs' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/jobs#light">Jobs<img class="icon" src="<?php echo($prefix);?>/images/icons/jobs-icon-light.png" alt=""></a></li>
                 <li<?php echo($current_page == 'Apply' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/apply#light">Apply<img class="icon" src="<?php echo($prefix);?>/images/icons/apply-icon-light.png" alt=""></a></li>
-                <li<?php echo($current_page == 'About' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/about#light">About<img class="icon" src="<?php echo($prefix);?>../images/icons/about-icon-light.png" alt=""></a></li>
+                <li<?php echo($current_page == 'About' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/about#light">About<img class="icon" src="<?php echo($prefix);?>/images/icons/about-icon-light.png" alt=""></a></li>
+                <li<?php echo($current_page == 'Login' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/login#light">Login</a></li>
             </ul>
         </nav>
         <nav id="nav-dark" class='nav-style'>
@@ -95,6 +98,7 @@
                 <li<?php echo($current_page == 'Jobs' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/jobs#dark">Jobs<img class="icon" src="<?php echo($prefix);?>/images/icons/jobs-icon-dark.png" alt=""></a></li>
                 <li<?php echo($current_page == 'Apply' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/apply#dark">Apply<img class="icon" src="<?php echo($prefix);?>/images/icons/apply-icon-dark.png" alt=""></a></li>
                 <li<?php echo($current_page == 'About' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/about#dark">About<img class="icon" src="<?php echo($prefix);?>/images/icons/about-icon-dark.png" alt=""></a></li>
+                <li<?php echo($current_page == 'Login' ? ' class="nav_active"' :'');?>><a href="<?php echo($prefix);?>/login#dark">Login</a></li>
             </ul>
         </nav>
 
