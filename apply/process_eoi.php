@@ -238,7 +238,7 @@ if (empty($errors)) {
         echo "<li>" . $error . "</li>";
     }
     echo "</ul>";
-    echo "<p><a href='apply.php'>Go back and try again</a></p>";
+    echo "<p><a href='index.php'>Go back and try again</a></p>";
     echo "</main>";
     
     // 4. INCLUDE FOOTER FOR ERROR PAGE
