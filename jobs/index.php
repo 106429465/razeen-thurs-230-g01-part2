@@ -21,10 +21,9 @@
         </p>
         <!-- This filler text was created by ChatGPT -->
         <aside>
-          <form method="get" action="../jobs/job_search.php">        
-            <label for="model">Search:</label>       
-            <input type="text" id="search" name="search" placeholder="Search jobs..." required>        
-            <button type="submit">Search</button>
+          <form method="get" action="../jobs/job_search.php">
+            <input type="text" id="search" name="search" placeholder="Search jobs..." required>
+            <button type="submit" class="fa fa-search"></button>
           </form>
 
           <h3>Why Join HealThML?</h3>
