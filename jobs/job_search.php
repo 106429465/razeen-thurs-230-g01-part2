@@ -49,10 +49,13 @@
         </p>
         <!-- This filler text was created by ChatGPT -->
         <aside>
-        <form method="get" action="../jobs/job_search.php">
-            <input type="text" id="search" name="search" placeholder="Search jobs..." required>
-            <button type="submit" class="fa fa-search"></button>
-        </form>
+        <form method="get" action="../jobs/job_search.php" aria-label="Search for jobs">
+            <input type="search" id="search" name="search" placeholder="Search jobs..." required>
+            <label for="search">
+              <span class="sr-only">Search the website</span>
+              <i class="fa fa-search"></i>
+            </label>
+          </form>
 
           <h3>Why Join HealThML?</h3>
           <p>
