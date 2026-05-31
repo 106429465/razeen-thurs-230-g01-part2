@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$user = "phpmyadmin";
+$user = "root";
 $pwd = "";      
 $sql_db = "healthml";
 ?>

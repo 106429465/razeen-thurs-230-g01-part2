@@ -214,7 +214,7 @@ if (empty($errors)) {
             echo "<h1>Application Submitted Successfully</h1>";
             echo "<p>Thank you, <strong>" . $first_name . " " . $last_name . "</strong>. Your expression of interest has been safely recorded.</p>";
             echo "<p>Your unique generated EOInumber is: <strong>" . $eoi_number . "</strong>.</p>";
-            echo "<p><a href='index.php'>Return to Form</a></p>";
+            echo "<p><a href='index.php#light' class='link-light'>Return to Form</a><a href='index.php#dark' class='link-dark'>Return to Form</a></p>";
             echo "</main>";
             
             // 2. INCLUDE FOOTER FOR SUCCESS PAGE

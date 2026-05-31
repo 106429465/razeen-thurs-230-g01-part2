@@ -1,4 +1,10 @@
-<form action="." method="post">
+<?php
+// Capture the theme from the URL if it exists
+$theme = isset($_GET['theme']) ? $_GET['theme'] : 'light'; 
+$form_action = ".?theme=$theme#$theme";
+?>
+
+<form action="<?php echo $form_action; ?>" method="post">
     <div id="form_listall">
         <button type="submit"
                 name="command" value="EOI_all">
@@ -7,7 +13,7 @@
     </div>
 </form>
 <br>
-<form action="." method="post">
+<form action="<?php echo $form_action; ?>" method="post">
     <div id="form_listbyref">
         <button type="submit"
                 name="command" value="EOI_reference">
@@ -18,7 +24,7 @@
     </div>
 </form>
 
-<form action="." method="post">
+<form action="<?php echo $form_action; ?>" method="post">
     <div id="form_listbyname">
         <button type="submit"
                 name="command" value="EOI_firstname">
@@ -31,7 +37,7 @@
     </div>
 </form>
 
-<form action="." method="post">
+<form action="<?php echo $form_action; ?>" method="post">
     <div id="form_deletebyref">
         <button type="submit"
                 name="command" value="EOI_deletebyref">
@@ -42,7 +48,7 @@
     </div>
 </form>
 
-<form action="." method="post">
+<form action="<?php echo $form_action; ?>" method="post">
     <div id="form_sort">
         <button type="submit"
                 name="command" value="EOI_sortby">

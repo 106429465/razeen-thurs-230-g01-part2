@@ -27,7 +27,7 @@ include '../include/header.inc';
             $_SESSION['user'] = $username;
             header('Location: ../manage');
         } else {
-            echo "Invalid Login. <a href='../login'>Try again</a>";
+            echo "Invalid Login. <a href='../login#dark' class='link-dark'>Try again</a><a href='../login#light' class='link-light'>Try again</a>";
         }
     } else {
         header('Location: login.php');

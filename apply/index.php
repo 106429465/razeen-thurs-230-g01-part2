@@ -8,7 +8,7 @@
       <h1>Apply to HealThML</h1>
       <p>We would love for you to be a part of our team, please fill out the form below and we'll get back to you shortly!</p>
       
-      <form action="./process_eoi.php" method="post" novalidate="novalidate">
+      <form action="process_eoi.php" method="post" novalidate="novalidate">
         <label for="job_ref_num">Job reference number</label>
         <input type="text" id="job_ref_num" name="job_ref_num"><br><br>
         
