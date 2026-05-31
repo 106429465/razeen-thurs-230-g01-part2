@@ -121,14 +121,26 @@ include '../include/header.inc';
                     echo "<td>" . $row['other_skills'] . "</td>";
                     echo "
                     <td>
-                        <form action='.' method='post'>
-                            <select name='eoi_" . $row['eoi_id'] . "_status' id='dropdown_status' onchange='this.form.submit()'>
-                                <option value='' selected disabled hidden>" . $row['status'] . "</option>
-                                <option value='New'>New</option>
-                                <option value='Current'>Current</option>
-                                <option value='Final'>Final</option>
-                            </select>
-                        </form>
+                        <details>
+                            <summary>" . $row['status'] . "</summary>
+                            <form action='.' method='post'>
+                                <button type='submit'
+                                        name='eoi_" . $row['eoi_id'] . "_status' value='New'
+                                        style='width:100%;'>
+                                   New
+                                </button>
+                                <button type='submit'
+                                        name='eoi_" . $row['eoi_id'] . "_status' value='Current'
+                                        style='width:100%;'>
+                                   Current
+                                </button>
+                                <button type='submit'
+                                        name='eoi_" . $row['eoi_id'] . "_status' value='Final'
+                                        style='width:100%;'>
+                                   Final
+                                </button>
+                            </form>
+                        </details>
                     </td>
                     ";
                     echo "</tr>";
