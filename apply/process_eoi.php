@@ -150,7 +150,7 @@ if (!empty($date_of_birth)) {
 // 5. DATABASE CONNECTION AND TABLE CREATION (Requirement)
 // =========================================================================
 // Include the shared group settings file using a safe relative path
-require_once "settings.php";
+require_once "../settings.php";
 
 // Establish the connection to MySQL using your group's exact variable names.
 $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
