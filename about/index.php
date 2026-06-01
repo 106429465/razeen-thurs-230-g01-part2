@@ -94,7 +94,7 @@
                     $contribution_found = false;
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            if ($row['name'] == 'Tyler') {
+                            if ($row['Person'] == 'Tyler') {
                                 echo "<li>" . $row['contribution'] . "</li>";
                                 $contribution_found = true;
                             }
@@ -121,7 +121,7 @@
                     $contribution_found = false;
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            if ($row['name'] == 'Zain') {
+                            if ($row['Person'] == 'Zain') {
                                 echo "<li>" . $row['contribution'] . "</li>";
                                 $contribution_found = true;
                             }
@@ -148,7 +148,7 @@
                     $contribution_found = false;
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            if ($row['name'] == 'Jack') {
+                            if ($row['Person'] == 'Jack') {
                                 echo "<li>" . $row['contribution'] . "</li>";
                                 $contribution_found = true;
                             }
@@ -175,7 +175,7 @@
                     $contribution_found = false;
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            if ($row['name'] == 'Marley') {
+                            if ($row['Person'] == 'Marley') {
                                 echo "<li>" . $row['contribution'] . "</li>";
                                 $contribution_found = true;
                             }
