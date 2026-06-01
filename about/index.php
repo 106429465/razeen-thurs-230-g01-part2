@@ -79,8 +79,7 @@
               die("Failed to connect to the database: " . mysqli_connect_error());
           }
 
-          $sql = "SELECT * FROM about";
-          $result = mysqli_query($connection, $sql);
+
           ?>
         <section id="quotes">
           <h2>Quotes:</h2>
@@ -91,6 +90,8 @@
               <dd>
                 <ul>
                     <?php
+                    $sql = "SELECT * FROM about";
+                    $result = mysqli_query($connection, $sql);
                     $contribution_found = false;
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -118,6 +119,8 @@
               <dd>
                 <ul>
                     <?php
+                    $sql = "SELECT * FROM about";
+                    $result = mysqli_query($connection, $sql);
                     $contribution_found = false;
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -145,6 +148,8 @@
               <dd>
                 <ul>
                     <?php
+                    $sql = "SELECT * FROM about";
+                    $result = mysqli_query($connection, $sql);
                     $contribution_found = false;
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -172,6 +177,8 @@
               <dd>
                 <ul>
                     <?php
+                    $sql = "SELECT * FROM about";
+                    $result = mysqli_query($connection, $sql);
                     $contribution_found = false;
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
