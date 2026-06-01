@@ -5,6 +5,15 @@ include '../include/header.inc';
 
 <main>
     <?php
+    // Function taken from /apply/process_eoi.php
+    function sanitise_input($data)
+    {
+        $data = trim($data); // Remove accidental leading/trailing spaces
+        $data = stripslashes($data); // Remove backslashes from input string
+        $data = htmlspecialchars($data); // Convert special characters to HTML entities (Prevents XSS)
+        return $data;
+    }
+
     session_start();
     if (isset($_SESSION['user'])) {
         echo "<h1>HR Management Portal</h1>";
@@ -15,6 +24,7 @@ include '../include/header.inc';
         session_start();
         $conn = mysqli_connect($host,$user,$pwd,$sql_db);
 
+        # Check table exists before attempting to access
         $sql = "DESCRIBE `eoi`";
         $eoi_exists = mysqli_query($conn, $sql);
         if ($eoi_exists) {
@@ -26,7 +36,7 @@ include '../include/header.inc';
                 break;
                 case "EOI_reference" :
                     # Get Expressions Of Interest with given job reference
-                    $search = mysqli_real_escape_string($conn, $_POST['search_reference']);
+                    $search = sanitise_input(mysqli_real_escape_string($conn, $_POST['search_reference']));
                     $stmt = $conn->prepare("SELECT * FROM `eoi` WHERE `job_ref_num` LIKE ?");
                     $stmt->bind_param("s", $search);
                     $stmt->execute();
@@ -35,12 +45,12 @@ include '../include/header.inc';
                 case "EOI_firstname" :
                     # Get Expressions Of Interest with given first/last name
                     if (isset($conn, $_POST['search_firstname'])) {
-                        $search_firstname = mysqli_real_escape_string($conn, $_POST['search_firstname']);
+                        $search_firstname = sanitise_input(mysqli_real_escape_string($conn, $_POST['search_firstname']));
                     } else {
                         $search_firstname = "";
                     }
                     if (isset($conn, $_POST['search_lastname'])) {
-                        $search_lastname = mysqli_real_escape_string($conn, $_POST['search_lastname']);
+                        $search_lastname = sanitise_input(mysqli_real_escape_string($conn, $_POST['search_lastname']));
                     } else {
                         $search_lastname = "";
                     }
@@ -51,7 +61,7 @@ include '../include/header.inc';
                 break;
                 case "EOI_deletebyref" :
                     # Delete Expressions Of Interest with given job reference
-                    $delete = mysqli_real_escape_string($conn, $_POST['delete_reference']);
+                    $delete = sanitise_input(mysqli_real_escape_string($conn, $_POST['delete_reference']));
                     $stmt = $conn->prepare("DELETE FROM `eoi` WHERE `job_ref_num` LIKE ?");
                     $stmt->bind_param("s", $delete);
                     $stmt->execute();
@@ -61,7 +71,7 @@ include '../include/header.inc';
                 case "EOI_sortby" :
                     # Get all expressions of interest, sorted by given category
                     echo $_POST['sort_id'];
-                    $sort = mysqli_real_escape_string($conn, $_POST['sort_id']);
+                    $sort = sanitise_input(mysqli_real_escape_string($conn, $_POST['sort_id']));
                     $stmt = $conn->prepare("SELECT * FROM `eoi` ORDER BY " . $sort . " ASC");
                     #$stmt->bind_param("s", $sort);
                     $stmt->execute();
@@ -94,10 +104,10 @@ include '../include/header.inc';
                 </tr>";
 
                 while ($row = mysqli_fetch_assoc($result)) {
-
+                    // Check if current row's status has an update request, then applies new status
                     if (isset($_POST['eoi_' . $row['eoi_id'] . '_status'])) {
                         echo "A";
-                        $new_status = mysqli_real_escape_string($conn, $_POST['eoi_' . $row['eoi_id'] . '_status']);
+                        $new_status = sanitise_input(mysqli_real_escape_string($conn, $_POST['eoi_' . $row['eoi_id'] . '_status']));
                         $stmt = $conn->prepare("UPDATE `eoi` SET `status`=? WHERE `eoi_id` = ?");
                         $stmt->bind_param("ss", $new_status, $row['eoi_id']);
                         $stmt->execute();
@@ -118,6 +128,7 @@ include '../include/header.inc';
                     echo "<td>" . $row['phone_number'] . "</td>";
                     echo "<td>" . $row['skills'] . "</td>";
                     echo "<td>" . $row['other_skills'] . "</td>";
+                    // Create changeable dropdown for status element
                     echo "
                     <td>
                         <details>
