@@ -7,8 +7,7 @@ include '../include/header.inc';
     <?php
     session_start();
     if (isset($_SESSION['user'])) {
-        echo "Welcome, " .$_SESSION['user'];
-        echo "<br><br>";
+        echo "<h1>HR Management Portal</h1>";
         include 'manage.inc';
         require_once "../settings.php";
 
@@ -153,7 +152,7 @@ include '../include/header.inc';
             <br>
             <form action="logout.php" method="post">
                 <div id="form_listall">
-                    <button type="submit">
+                    <button type="submit" class="logout_button">
                         Sign Out
                     </button>
                 </div>

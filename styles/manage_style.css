@@ -1,5 +1,9 @@
 @import "style.css";
 
+h1 {
+    text-align: center;
+}
+
 input,
 select {
 padding: 0.5rem;
@@ -27,6 +31,7 @@ color: var(--button-color);
 padding: 0.6%;
 border-radius: 4px;
 cursor: pointer;
+width: 100%;
 }
 
 button:hover {
@@ -35,4 +40,28 @@ background-color: var(--button-hover-background-color);
 
 input, textarea {
 color: var(--text);
+}
+
+.hr_options {
+    margin: 0;
+    padding: 2%;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+}
+
+.hr_options li {
+    width: 80%;
+    margin-left:2%;
+    margin-right:2%;
+}
+
+.hr_options li button {
+    padding: 4%;
+    margin-bottom: 4%;
+}
+
+.logout_button {
+    display:block;
+    width:10%;
 }
