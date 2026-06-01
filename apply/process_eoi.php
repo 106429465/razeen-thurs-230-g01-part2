@@ -208,7 +208,7 @@ if (empty($errors)) {
             
             // 1. INCLUDE HEADER FOR SUCCESS PAGE
             $current_page = 'Apply Status';
-            include 'include/header.inc';
+            include '../include/header.inc';
             
             echo "<main id='main-content'>";
             echo "<h1>Application Submitted Successfully</h1>";
@@ -218,7 +218,7 @@ if (empty($errors)) {
             echo "</main>";
             
             // 2. INCLUDE FOOTER FOR SUCCESS PAGE
-            include 'include/footer.inc';
+            include '../include/footer.inc';
             
         } else {
             echo "<p>Execution Error: Could not save records to database.</p>";
