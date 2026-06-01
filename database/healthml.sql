@@ -40,7 +40,7 @@ CREATE TABLE `about` (
 INSERT INTO `about` (`Person`, `Work ID`, `Contribution`) VALUES
 ('Tyler', 1, 'Home Page'),
 ('Tyler', 3, 'Core CSS'),
-('Tyler', 4, 'Jire Management'),
+('Tyler', 4, 'Jira Management'),
 ('Zain', 5, 'Apply Page'),
 ('Zain', 6, 'Core CSS'),
 ('Zain', 7, 'Accessibility Checking'),
