@@ -71,17 +71,39 @@
             </tr>
           </table>
         </section>
+          <?php
+          require_once "../settings.php";
+          $connection = @mysqli_connect($host, $user, $pwd, $sql_db);
+
+          if (!$connection) {
+              die("Failed to connect to the database: " . mysqli_connect_error());
+          }
+
+          $sql = "SELECT * FROM about";
+          $result = mysqli_query($connection, $sql);
+          ?>
         <section id="quotes">
           <h2>Quotes:</h2>
           <div class="quote_entry">
             <h3>Tyler Stokes</h3>
             <dl>
-              <dt>Contribution</dt>
+              <dt>Contributions</dt>
               <dd>
                 <ul>
-                  <li>Home page</li>
-                  <li>Core CSS</li>
-                  <li>Jira Management</li>
+                    <?php
+                    $contribution_found = false;
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            if ($row['name'] == 'Tyler') {
+                                echo "<li>" . $row['contribution'] . "</li>";
+                                $contribution_found = true;
+                            }
+                        }
+                    }
+                    if (!$contribution_found) {
+                        echo "<li>No contributions found.</li>";
+                    }
+                    ?>
                 </ul>
               </dd>
               <dt>Quote</dt>
@@ -92,12 +114,23 @@
           <div class="quote_entry">
             <h3>Zain Khan</h3>
             <dl>
-              <dt>Contribution</dt>
+              <dt>Contributions</dt>
               <dd>
                 <ul>
-                  <li>Apply page</li>
-                  <li>Core CSS</li>
-                  <li>Accessibility checking</li>
+                    <?php
+                    $contribution_found = false;
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            if ($row['name'] == 'Zain') {
+                                echo "<li>" . $row['contribution'] . "</li>";
+                                $contribution_found = true;
+                            }
+                        }
+                    }
+                    if (!$contribution_found) {
+                        echo "<li>No contributions found.</li>";
+                    }
+                    ?>
                 </ul>
               </dd>
               <dt>Quote</dt>
@@ -108,10 +141,23 @@
           <div class="quote_entry">
             <h3>Jack Bailey</h3>
             <dl>
-              <dt>Contribution</dt>
+              <dt>Contributions</dt>
               <dd>
                 <ul>
-                  <li>Jobs page</li>
+                    <?php
+                    $contribution_found = false;
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            if ($row['name'] == 'Jack') {
+                                echo "<li>" . $row['contribution'] . "</li>";
+                                $contribution_found = true;
+                            }
+                        }
+                    }
+                    if (!$contribution_found) {
+                        echo "<li>No contributions found.</li>";
+                    }
+                    ?>
                 </ul>
               </dd>
               <dt>Quote</dt>
@@ -122,11 +168,23 @@
           <div class="quote_entry">
             <h3>Marley Brown</h3>
             <dl>
-              <dt>Contribution</dt>
+              <dt>Contributions</dt>
               <dd>
                 <ul>
-                  <li>About page</li>
-                  <li>Github management</li>
+                    <?php
+                    $contribution_found = false;
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            if ($row['name'] == 'Marley') {
+                                echo "<li>" . $row['contribution'] . "</li>";
+                                $contribution_found = true;
+                            }
+                        }
+                    }
+                    if (!$contribution_found) {
+                        echo "<li>No contributions found.</li>";
+                    }
+                    ?>
                 </ul>
               </dd>
               <dt>Quote</dt>
