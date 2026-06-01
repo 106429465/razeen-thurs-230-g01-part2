@@ -1,6 +1,6 @@
 @import "style.css";
 
-h1 {
+h1:not(#title) {
     text-align: center;
 }
 

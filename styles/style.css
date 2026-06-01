@@ -336,7 +336,7 @@ header {
   padding-bottom: 1em;
 }
 
-@media (max-width: 1420px) {
+@media (max-width: 1670px) {
   header {
     justify-content: flex-start;
   }
@@ -348,7 +348,7 @@ header {
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 1120px) {
   header {
     flex-direction: column-reverse;
   }
